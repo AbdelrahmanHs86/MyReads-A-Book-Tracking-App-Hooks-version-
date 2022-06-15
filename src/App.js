@@ -150,6 +150,36 @@ const BooksApp = () => {
 
     <div className="app">
 
+
+// <SearchBar searchResults={searchResults} books={books} Search={search} changeSearchBook={changeSearchBook} changeBook={changeBook} />
+
+      <div className="search-books">
+
+        <div className="search-books-bar">
+          <Link to="/" className="close-search" >Close</Link>
+          {/* <button className="close-search" onClick={() => navigate(-1)}>go back</button> */}
+          <div className="search-books-input-wrapper">
+            <input type="text" placeholder="Search by title or author" value={words} onChange={(e) => searchBook(e.target.value)} />
+          </div>
+
+        </div>
+
+        <div className="search-books-results">
+          <ol className="books-grid">
+
+            {words && search.length > 0 ? search.map(book => {
+              //console.log(book.shelf, 'shelf');
+              return (<Book key={book.id} book={book} changeBook={changeBook} changeSearchBook={changeSearchBook} />)
+
+            }) : <p></p>}
+
+          </ol>
+        </div>
+
+      </div>
+
+
+
       <div className="list-books">
         <Header title="My Reads" />
         <div className="list-books-content">
