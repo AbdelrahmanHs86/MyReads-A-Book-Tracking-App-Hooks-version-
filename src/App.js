@@ -14,6 +14,24 @@ import { Link, Route, Routes } from 'react-router-dom';
 
 const BooksApp = () => {
 
+  useEffect(() => {
+
+    let mounted = true;
+    if (mounted) {
+      const getBooks = async () => {
+        const Books = await BooksAPI.getAll();
+        setBooks(Books);
+      }
+      getBooks();
+    }
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+
+
 
   // STATE MANEGMENT
 
