@@ -138,6 +138,14 @@ const BooksApp = () => {
   // }
 
 
+  // Add a book to the book list 
+  const addBook = (book) => {
+
+    setBooks([...books, book]);
+
+  }
+
+
   return (
 
     <div className="app">
