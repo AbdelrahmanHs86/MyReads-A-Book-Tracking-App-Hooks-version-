@@ -40,7 +40,7 @@ const BooksApp = () => {
   const [words, setWords] = useState([]);
 
 
-  // CHANGE THE SHELF OF THE BOOK INgit BOOKS LIST AND THE BACKEND 
+  // CHANGE THE SHELF OF THE BOOK IN BOOKS LIST AND THE BACKEND 
   const changeBook = (book, bookshelf) => {
 
     BooksAPI.update(book, bookshelf);
@@ -55,6 +55,26 @@ const BooksApp = () => {
     setBooks([...books]);
 
   };
+
+  // CHANGE THE SHELF OF THE BOOK in Search list books.
+  const changeSearchBook = (book, bookshelf) => {
+
+    BooksAPI.update(book, bookshelf);
+    console.log(book.id, bookshelf);
+    // search.find(el => el.id === book.id).shelf = bookshelf;
+    search.forEach(Book => {
+
+      if (Book.id === book.id) {
+        Book.shelf = bookshelf;
+      }
+    })
+
+    setSearch([...search]);
+
+    //add the book only if it does not exist in the booklist
+    if (books.filter(e => e.id === book.id).length <= 0) { addBook(book); }
+
+  }
 
   return (
 
