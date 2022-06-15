@@ -151,52 +151,62 @@ const BooksApp = () => {
     <div className="app">
 
 
-// <SearchBar searchResults={searchResults} books={books} Search={search} changeSearchBook={changeSearchBook} changeBook={changeBook} />
 
-      <div className="search-books">
+      <Routes>
 
-        <div className="search-books-bar">
-          <Link to="/" className="close-search" >Close</Link>
-          {/* <button className="close-search" onClick={() => navigate(-1)}>go back</button> */}
-          <div className="search-books-input-wrapper">
-            <input type="text" placeholder="Search by title or author" value={words} onChange={(e) => searchBook(e.target.value)} />
+        <Route exact path="/search" element={
+
+          // <SearchBar searchResults={searchResults} books={books} Search={search} changeSearchBook={changeSearchBook} changeBook={changeBook} />
+
+          <div className="search-books">
+
+            <div className="search-books-bar">
+              <Link to="/" className="close-search" >Close</Link>
+              {/* <button className="close-search" onClick={() => navigate(-1)}>go back</button> */}
+              <div className="search-books-input-wrapper">
+                <input type="text" placeholder="Search by title or author" value={words} onChange={(e) => searchBook(e.target.value)} />
+              </div>
+
+            </div>
+
+            <div className="search-books-results">
+              <ol className="books-grid">
+
+                {words && search.length > 0 ? search.map(book => {
+                  //console.log(book.shelf, 'shelf');
+                  return (<Book key={book.id} book={book} changeBook={changeBook} changeSearchBook={changeSearchBook} />)
+
+                }) : <p></p>}
+
+              </ol>
+            </div>
+
           </div>
-
-        </div>
-
-        <div className="search-books-results">
-          <ol className="books-grid">
-
-            {words && search.length > 0 ? search.map(book => {
-              //console.log(book.shelf, 'shelf');
-              return (<Book key={book.id} book={book} changeBook={changeBook} changeSearchBook={changeSearchBook} />)
-
-            }) : <p></p>}
-
-          </ol>
-        </div>
-
-      </div>
+        } />
 
 
+        <Route exact path="/" element={
+          // <SearchBar searchResults={searchResults} search={search} changeSearchBook={changeSearchBook} changeBook={changeBook} />
 
-      <div className="list-books">
-        <Header title="My Reads" />
-        <div className="list-books-content">
-          <div>
-            <Bookshelf shelfName="Currently Reading" books={books} shelf="currentlyReading" changeBook={changeBook} changeSearchBook={changeSearchBook} />
-            <Bookshelf shelfName="Read" books={books} shelf="read" changeBook={changeBook} changeSearchBook={changeSearchBook} />
-            <Bookshelf shelfName="Want To Read" books={books} shelf="wantToRead" changeBook={changeBook} changeSearchBook={changeSearchBook} />
+
+          <div className="list-books">
+            <Header title="My Reads" />
+            <div className="list-books-content">
+              <div>
+                <Bookshelf shelfName="Currently Reading" books={books} shelf="currentlyReading" changeBook={changeBook} changeSearchBook={changeSearchBook} />
+                <Bookshelf shelfName="Read" books={books} shelf="read" changeBook={changeBook} changeSearchBook={changeSearchBook} />
+                <Bookshelf shelfName="Want To Read" books={books} shelf="wantToRead" changeBook={changeBook} changeSearchBook={changeSearchBook} />
+              </div>
+            </div>
+            <div className="open-search">
+              <Link to="./search">Add a book</Link>
+            </div>
           </div>
-        </div>
-        <div className="open-search">
-          <Link to="./search">Add a book</Link>
-        </div>
-      </div>
+        } />
 
+      </Routes >
 
     </div>
-
   )
 
 }
