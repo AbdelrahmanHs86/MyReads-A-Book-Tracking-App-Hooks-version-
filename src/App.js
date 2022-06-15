@@ -40,6 +40,21 @@ const BooksApp = () => {
   const [words, setWords] = useState([]);
 
 
+  // CHANGE THE SHELF OF THE BOOK INgit BOOKS LIST AND THE BACKEND 
+  const changeBook = (book, bookshelf) => {
+
+    BooksAPI.update(book, bookshelf);
+    console.log(book.id, bookshelf);
+    books.forEach(Book => {
+
+      if (Book.id === book.id) {
+        Book.shelf = bookshelf;
+      }
+    })
+    // books.find(el => el.id === book.id).shelf = bookshelf;
+    setBooks([...books]);
+
+  };
 
   return (
 
