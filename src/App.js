@@ -76,6 +76,68 @@ const BooksApp = () => {
 
   }
 
+
+  const searchBook = async (event) => {
+
+    let searchResults = [];
+
+    // controlling the typing results
+    if (event === undefined || event === "") {
+      // if empty or undefined set the wordd list to an empty list.
+      setWords('');
+      console.log(event, 'inside empty');
+      setSearch([]);
+    }
+
+    else {
+      // if not empty or undefined make an api request to search books.
+      setWords(event);
+      searchResults = await BooksAPI.search(event);
+      // searchResults.forEach()
+      books.map(mainbook => searchResults.forEach(searchbook => {
+        if (mainbook.id == searchbook.id) { searchbook.shelf = mainbook.shelf }
+      }
+      ));
+      console.log('searchResults:', searchResults);
+    }
+
+
+    try {
+      setSearch(searchResults);
+      console.log('added');
+    }
+
+    catch (err) {
+      console.log('error');
+      setSearch([]);
+      console.log('search list: ', search)
+
+    }
+
+
+    // this.props.searchResults(searchResults);
+
+  }
+
+
+  // get the searchresults from the searchbar component and assign to search list.
+  // const searchResults = (searchResults) => {
+
+  //   try {
+  //     setSearch(searchResults);
+  //     console.log('added');
+  //   }
+
+  //   catch (err) {
+  //     console.log('error');
+  //     setSearch([])
+  //     console.log('search list: ', search);
+
+  //   }
+
+  // }
+
+
   return (
 
     <div className="app">
