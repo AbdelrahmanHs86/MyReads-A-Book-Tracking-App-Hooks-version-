@@ -40,6 +40,30 @@ const BooksApp = () => {
   const [words, setWords] = useState([]);
 
 
+
+  return (
+
+    <div className="app">
+
+      <div className="list-books">
+        <Header title="My Reads" />
+        <div className="list-books-content">
+          <div>
+            <Bookshelf shelfName="Currently Reading" books={books} shelf="currentlyReading" changeBook={changeBook} changeSearchBook={changeSearchBook} />
+            <Bookshelf shelfName="Read" books={books} shelf="read" changeBook={changeBook} changeSearchBook={changeSearchBook} />
+            <Bookshelf shelfName="Want To Read" books={books} shelf="wantToRead" changeBook={changeBook} changeSearchBook={changeSearchBook} />
+          </div>
+        </div>
+        <div className="open-search">
+          <Link to="./search">Add a book</Link>
+        </div>
+      </div>
+
+
+    </div>
+
+  )
+
 }
 
 export default BooksApp;
