@@ -1,6 +1,9 @@
 # MyReads Project
 
-A React web application that allows you to search, select, and categorize books you have read, are currently reading, or want to read.
+A React web application that allows you to search, select, and categorize books you have read,<br> are currently reading, or want to read.
+
+
+<p align="center"><img src="https://github.com/AbdelrahmanHs86/My-Reads/blob/main/myReads.gif"></p>
 
 
 ## Launching The Project
